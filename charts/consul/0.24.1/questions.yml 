@@ -76,98 +76,107 @@ questions:
     default: false
     description: "Enable TLS encryption on clients and servers"
     type: boolean
-    show_subquestion_if: true
     label: Consul Chart TLS
-    subquestions:
-    - variable: global.tls.enableAutoEncrypt
-      default: false
-      description: "Enable auto-encrypt on clients and servers"
-      type: boolean
-      label: Consul Chart TLS
-    - variable: global.tls.serverAdditionalDNSSANs
-      default: "[]"
-      description: "List of additional DNS names to set as Subject Alternative Names (SANs) in the server certificate"
-      type: string
-      label: Consul Chart Additional DNS Names
-    - variable: global.tls.serverAdditionalIPSAN
-      default: "[]"
-      description: "List of additional IP addresses to set as Subject Alternative Names (SANs) in the server certificate"
-      type: string
-      label: Consul Chart Additional IPs
-    - variable: global.tls.verify
-      default: true
-      description: "Set verify_outgoing, verify_server_hostname, and verify_incoming_rpc"
-      type: boolean
-      label: Consul Chart Verify TLS
-    - variable: global.tls.httpsOnly
-      default: true
-      description: "HTTPS connections on client and servers"
-      type: boolean
-      label: Consul Chart HTTPS on Clients and Servers
-    - variable: global.tls.caCert.secretName
-      default: ""
-      description: "Kubernetes secret name containing the certificate of the CA to use for TLS"
-      type: string
-      label: Consul Chart CA Cert Secret Name
-    - variable: global.tls.caCert.secretKey
-      default: ""
-      description: "Kubernetes secret key containing the certificate of the CA to use for TLS"
-      type: string
-      label: Consul Chart CA Cert Secret Key
-    - variable: global.tls.caKey.secretName
-      default: ""
-      description: "Kubernetes secret name containing the private key of the CA to use for TLS"
-      type: string
-      label: Consul Chart CA Key Secret Name
-    - variable: global.tls.caKey.secretKey
-      default: ""
-      description: "Kubernetes secret key containing the private key of the CA to use for TLS"
-      type: string
-      label: Consul Chart CA Key Secret Key
+  - variable: global.tls.enableAutoEncrypt
+    default: false
+    description: "Enable auto-encrypt on clients and servers"
+    type: boolean
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart TLS
+  - variable: global.tls.serverAdditionalDNSSANs
+    default: "[]"
+    description: "List of additional DNS names to set as Subject Alternative Names (SANs) in the server certificate"
+    type: string
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart Additional DNS Names
+  - variable: global.tls.serverAdditionalIPSAN
+    default: "[]"
+    description: "List of additional IP addresses to set as Subject Alternative Names (SANs) in the server certificate"
+    type: string
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart Additional IPs
+  - variable: global.tls.verify
+    default: true
+    description: "Set verify_outgoing, verify_server_hostname, and verify_incoming_rpc"
+    type: boolean
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart Verify TLS
+  - variable: global.tls.httpsOnly
+    default: true
+    description: "HTTPS connections on client and servers"
+    type: boolean
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart HTTPS on Clients and Servers
+  - variable: global.tls.caCert.secretName
+    default: ""
+    description: "Kubernetes secret name containing the certificate of the CA to use for TLS"
+    type: string
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart CA Cert Secret Name
+  - variable: global.tls.caCert.secretKey
+    default: ""
+    description: "Kubernetes secret key containing the certificate of the CA to use for TLS"
+    type: string
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart CA Cert Secret Key
+  - variable: global.tls.caKey.secretName
+    default: ""
+    description: "Kubernetes secret name containing the private key of the CA to use for TLS"
+    type: string
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart CA Key Secret Name
+  - variable: global.tls.caKey.secretKey
+    default: ""
+    description: "Kubernetes secret key containing the private key of the CA to use for TLS"
+    type: string
+    show_if: "global.tls.enabled=true"
+    label: Consul Chart CA Key Secret Key
   - variable: global.acls.manageSystemACLs
     default: false
     description: "Manage ACL tokens and policies for all Consul and consul-k8s components"
     type: boolean
-    show_subquestion_if: true
     label: Consul Chart ACLs
-    subquestions:
-    - variable: global.acls.bootstrapToken.secretName
-      default: ""
-      description: "Kubernetes secret containing the bootstrap token name"
-      type: string
-      label: Consul Chart Boostrap Token Name
-    - variable: global.acls.bootstrapToken.secretKey
-      default: ""
-      description: "Kubernetes secret containing the bootstrap token key"
-      type: string
-      label: Consul Chart Boostrap Token Key
-    - variable: global.acls.createReplicationToken
-      default: false
-      description: "ACL token will be created that can be used in secondary datacenters for replication"
-      type: boolean
-      label: Consul Chart Create Replication Token
-    - variable: global.acls.replicationToken.secretName
-      default: ""
-      description: "Replication token name"
-      type: string
-      label: Consul Chart Replication Token Name
-    - variable: global.acls.replicationToken.secretKey
-      default: ""
-      description: "Replication token key"
-      type: string
-      label: Consul Chart Replication Token Key
+  - variable: global.acls.bootstrapToken.secretName
+    default: ""
+    description: "Kubernetes secret containing the bootstrap token name"
+    type: string
+    show_if: "global.acls.manageSystemACLs=true"
+    label: Consul Chart Boostrap Token Name
+  - variable: global.acls.bootstrapToken.secretKey
+    default: ""
+    description: "Kubernetes secret containing the bootstrap token key"
+    type: string
+    show_if: "global.acls.manageSystemACLs=true"
+    label: Consul Chart Boostrap Token Key
+  - variable: global.acls.createReplicationToken
+    default: false
+    description: "ACL token will be created that can be used in secondary datacenters for replication"
+    type: boolean
+    show_if: "global.acls.manageSystemACLs=true"
+    label: Consul Chart Create Replication Token
+  - variable: global.acls.replicationToken.secretName
+    default: ""
+    description: "Replication token name"
+    type: string
+    show_if: "global.acls.manageSystemACLs=true"
+    label: Consul Chart Replication Token Name
+  - variable: global.acls.replicationToken.secretKey
+    default: ""
+    description: "Replication token key"
+    type: string
+    show_if: "global.acls.manageSystemACLs=true"
+    label: Consul Chart Replication Token Key
   - variable: global.federation.enabled
     default: false
     description: "Enable federation"
     type: boolean
-    show_subquestion_if: true
     label: Consul Chart Federation
-    subquestions:
-    - variable: global.federation.createFederationSecret
-      default: false
-      description: "Create federation secret"
-      type: boolen
-      label: Consul Chart Create Federation Secret
+  - variable: global.federation.createFederationSecret
+    default: false
+    description: "Create federation secret"
+    type: boolen
+    show_if: "global.federation.enabled=true"
+    label: Consul Chart Create Federation Secret
 
 # config server settings
 - variable: server.enabled
@@ -373,28 +382,30 @@ questions:
     description: "Set up snapshot agents"
     type: boolean
     label: Consul Chart Client Snapshot Agents
-    show_subquestion_if: true
-    subquestions:
-    - variable: client.snapshotAgent.replicas
-      default: 2
-      description: "Number of snapshot agents created"
-      type: int
-      label: Consul Chart Client Snapshot Agents
-    - variable: client.snapshotAgent.configSecret.secretName
-      default: ""
-      description: "Kubernetes secret name to contain the entire config"
-      type: string
-      label: Consul Chart Client Secret Name
-    - variable: client.snapshotAgent.configSecret.secretKey
-      default: ""
-      description: "Kubernetes secret key to contain the entire config"
-      type: string
-      label: Consul Chart Client Secret Key
-    - variable: client.snapshotAgent.caCert
-      default: ""
-      description: "Optional CA added to the trusted system CAs"
-      type: string
-      label: Consul Chart Client Optional CA
+  - variable: client.snapshotAgent.replicas
+    default: 2
+    description: "Number of snapshot agents created"
+    type: int
+    show_if: "client.snapshotAgent.enabled=true"
+    label: Consul Chart Client Snapshot Agents
+  - variable: client.snapshotAgent.configSecret.secretName
+    default: ""
+    description: "Kubernetes secret name to contain the entire config"
+    type: string
+    show_if: "client.snapshotAgent.enabled=true"
+    label: Consul Chart Client Secret Name
+  - variable: client.snapshotAgent.configSecret.secretKey
+    default: ""
+    description: "Kubernetes secret key to contain the entire config"
+    type: string
+    show_if: "client.snapshotAgent.enabled=true"
+    label: Consul Chart Client Secret Key
+  - variable: client.snapshotAgent.caCert
+    default: ""
+    description: "Optional CA added to the trusted system CAs"
+    type: string
+    show_if: "client.snapshotAgent.enabled=true"
+    label: Consul Chart Client Optional CA
 
 # config dns settings
 - variable: dns.enabled
@@ -434,23 +445,24 @@ questions:
     description: "Service entry for the Consul UI"
     type: boolean
     label: Consul Chart UI Enable Service Entry
-    show_subquestion_if: true
-    subquestions:
-    - variable: ui.service.type
-      default: ""
-      description: "Type of service created"
-      type: string
-      label: Consul Chart UI Service Type
-    - variable: ui.service.annotations
-      default: ""
-      description: "Annotations to apply to the UI service"
-      type: string
-      label: Consul Chart UI Service Annotations
-    - variable: ui.service.additionalSpec
-      default: ""
-      description: "Additional service spec values"
-      type: string
-      label: Consul Chart UI Service Additional Spec
+  - variable: ui.service.type
+    default: ""
+    description: "Type of service created"
+    type: string
+    show_if: "ui.service.enabled=true"
+    label: Consul Chart UI Service Type
+  - variable: ui.service.annotations
+    default: ""
+    description: "Annotations to apply to the UI service"
+    type: string
+    show_if: "ui.service.enabled=true"
+    label: Consul Chart UI Service Annotations
+  - variable: ui.service.additionalSpec
+    default: ""
+    description: "Additional service spec values"
+    type: string
+    show_if: "ui.service.enabled=true"
+    label: Consul Chart UI Service Additional Spec
 
 # config sync catalog settings
 - variable: syncCatalog.enabled
@@ -667,38 +679,40 @@ questions:
     description: "Whether to create a Service or not"
     type: boolean
     label: Consul Chart Mesh Gateway Enable Service
-    show_subquestion_if: true
-    subquestions:
-    - variable: meshGateway.service.port
-      default: 443
-      description: "Port that the service will be exposed on"
-      type: int
-      label: Consul Chart Mesh Gateway Port
-    - variable: meshGateway.service.type
-      default: "LoadBalancer"
-      description: "Type of service"
-      type: enum
-      options:
-        - "LoadBalancer"
-        - "ClusterIP"
-        - "NodePort"
-      label: Consul Chart Mesh Gateway Service Type
-    - variable: meshGateway.service.nodePort
-      default: ""
-      description: "Hardcode the nodePort of the service if using a NodePort service"
-      type: int
-      show_if: "meshGateway.service.type=NodePort"
-      label: Consul Chart Mesh Gateway Node Port
-    - variable: meshGateway.service.annotations
-      default: ""
-      description: "Annotations to apply to the mesh gateway service"
-      type: string
-      label: Consul Chart Mesh Gateway Annotations
-    - variable: meshGateway.service.additionalSpec
-      default: ""
-      description: "Optional YAML string that will be appended to the Service spec"
-      type: string
-      label: Consul Chart Mesh Gateway Additional Spec
+  - variable: meshGateway.service.port
+    default: 443
+    description: "Port that the service will be exposed on"
+    type: int
+    show_if: "meshGateway.service.enabled=true"
+    label: Consul Chart Mesh Gateway Port
+  - variable: meshGateway.service.type
+    default: "LoadBalancer"
+    description: "Type of service"
+    type: enum
+    show_if: "meshGateway.service.enabled=true"
+    options:
+      - "LoadBalancer"
+      - "ClusterIP"
+      - "NodePort"
+    label: Consul Chart Mesh Gateway Service Type
+  - variable: meshGateway.service.nodePort
+    default: ""
+    description: "Hardcode the nodePort of the service if using a NodePort service"
+    type: int
+    show_if: "meshGateway.service.enabled=true&&meshGateway.service.type=NodePort"
+    label: Consul Chart Mesh Gateway Node Port
+  - variable: meshGateway.service.annotations
+    default: ""
+    description: "Annotations to apply to the mesh gateway service"
+    type: string
+    show_if: "meshGateway.service.enabled=true"
+    label: Consul Chart Mesh Gateway Annotations
+  - variable: meshGateway.service.additionalSpec
+    default: ""
+    description: "Optional YAML string that will be appended to the Service spec"
+    type: string
+    show_if: "meshGateway.service.enabled=true"
+    label: Consul Chart Mesh Gateway Additional Spec
   - variable: meshGateway.imageEnvoy
     default: "envoyproxy/envoy-alpine:v1.14.2"
     description: "Envoy image to use"
