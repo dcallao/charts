@@ -421,7 +421,7 @@ questions:
   - variable: dns.clusterIP
     default: ""
     description: "Predefined cluster IP for the DNS service"
-    type: int
+    type: string
     label: Consul Chart DNS Predefined Cluster IP
   - variable: dns.annotations
     default: ""
@@ -669,7 +669,6 @@ questions:
     type: int
     label: Consul Chart Mesh Gateway Port
   - variable: meshGateway.wanAddress.static
-    default: ""
     description: "If source is set to "Static" then this value will be used as the WAN address of the mesh gateways"
     type: int
     show_if: "meshGateway.wanAddress.source=Static"
@@ -696,7 +695,6 @@ questions:
       - "NodePort"
     label: Consul Chart Mesh Gateway Service Type
   - variable: meshGateway.service.nodePort
-    default: ""
     description: "Hardcode the nodePort of the service if using a NodePort service"
     type: int
     show_if: "meshGateway.service.enabled=true&&meshGateway.service.type=NodePort"
@@ -734,7 +732,6 @@ questions:
     type: int
     label: Consul Chart Mesh Gateway Container Port
   - variable: meshGateway.hostPort
-    default: ""
     description: "Optional hostPort for the gateway to be exposed on"
     type: int
     label: Consul Chart Mesh Gateway Container Host Port
@@ -786,7 +783,6 @@ questions:
     type: int
     label: Consul Chart Ingress Gateway Port 8443
   - variable: ingressGateways.defaults.service.ports.port.nodePort
-    default: ""
     description: "Node Port that will be exposed on the service and gateway container"
     type: int
     show_if: "ingressGateways.defaults.service.type=NodePort"
