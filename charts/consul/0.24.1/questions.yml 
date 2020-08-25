@@ -522,7 +522,7 @@ questions:
     show_if: "global.acls.manageSystemACLs=true"
   - variable: syncCatalog.logLevel
     default: "info"
-    description: "Log verbosity level. One of "trace", "debug", "info", "warn", or "error""
+    description: Log verbosity level. One of "trace", "debug", "info", "warn", or "error"
     type: enum
     options:
       - "trace"
@@ -617,7 +617,7 @@ questions:
     label: Consul Chart Connect Inject Central Config Enable
   - variable: connectInject.centralConfig.defaultProtocol
     default: ""
-    description: "Valid values are "http", "http2", "grpc" and "tcp""
+    description: Valid values are "http", "http2", "grpc" and "tcp"
     type: enum
     options:
       - ""
@@ -628,7 +628,7 @@ questions:
     label: Consul Chart Connect Inject Central Config Protocol
   - variable: connectInject.centralConfig.proxyDefaults
     default: "{}"
-    description: "Raw json string that will be written as the value of he "config" key of the global proxy-defaults config entry"
+    description: Raw json string that will be written as the value of he "config" key of the global proxy-defaults config entry
     type: string
     label: Consul Chart Connect Inject Central Config Proxy Defaults
 
@@ -645,7 +645,7 @@ questions:
   subquestions:
   - variable: meshGateway.globalMode
     default: local
-    description: "Globally configure which mode the gateway should run in. Can be set to either "remote", "local", "none" or empty string or ""."
+    description: Globally configure which mode the gateway should run in. Can be set to either "remote", "local", "none" or empty string or "".
     type: string
     label: Consul Chart Mesh Gateway Global Mode
   - variable: meshGateway.replicas
@@ -669,7 +669,7 @@ questions:
     type: int
     label: Consul Chart Mesh Gateway Port
   - variable: meshGateway.wanAddress.static
-    description: "If source is set to "Static" then this value will be used as the WAN address of the mesh gateways"
+    description: If source is set to "Static" then this value will be used as the WAN address of the mesh gateways
     type: int
     show_if: "meshGateway.wanAddress.source=Static"
     label: Consul Chart Mesh Gateway Static Address
