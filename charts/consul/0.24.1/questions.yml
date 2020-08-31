@@ -446,11 +446,15 @@ questions:
     type: boolean
     label: Consul Chart UI Enable Service Entry
   - variable: ui.service.type
-    default: ""
+    default: "LoadBalancer"
     description: "Type of service created"
-    type: string
+    type: enum
     show_if: "ui.service.enabled=true"
     label: Consul Chart UI Service Type
+    options:
+      - "LoadBalancer"
+      - "ClusterIP"
+      - "NodePort"
   - variable: ui.service.annotations
     default: ""
     description: "Annotations to apply to the UI service"
